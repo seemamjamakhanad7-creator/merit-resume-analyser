@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merit | Resume Analysis Results</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="results-section">
+        <h1>Your Resume Analysis</h1>
+        <p>Here's how your resume matches the opportunity.</p>
+
+        <div class="score-card">
+            <p>Estimated Skill Match</p>
+            <p id="match-score">--%</p>
+            <p id="score-note"></p>
+        </div>
+        
+<section class="dashboard-charts">
+    <h2>Performance Overview</h2>
+
+    <div class="chart-card">
+        <h3>Skills Breakdown</h3>
+        <canvas id="skills-chart"></canvas>
+    </div>
+
+    <div class="chart-card">
+        <h3>Skill Match Distribution</h3>
+        <canvas id="distribution-chart"></canvas>
+    </div>
+</section>
+
+
+        <div class="result-card">
+            <h3>Matching Skills</h3>
+            <ul id="matched-skills"></ul>
+        </div>
+
+        <div class="result-card">
+            <h3>Skills to Work On</h3>
+            <ul id="missing-skills"></ul>
+        </div>
+
+        <div class="result-card">
+            <h3>Suggestions</h3>
+            <ul id="suggestions"></ul>
+        </div>
+
+        <p class="disclaimer">
+            This is a preliminary keyword-based estimate,
+            not an assessment of your overall employability.
+        </p>
+
+        <button
+            type="button"
+            class="primary-button"
+            onclick="window.location.href='index.html'">
+            Back to Analyzer
+        </button>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+<script>
+    const savedResults = sessionStorage.getItem("meritResults");
+
+    if (savedResults) {
+        const data = JSON.parse(savedResults);
+
+        document.getElementById("match-score").textContent =
+            data.score + "%";
+
+        document.getElementById("score-note").textContent =
+            data.scoreNote;
+
+        function displayList(id, items) {
+            const list = document.getElementById(id);
+            list.replaceChildren();
+
+            if (items.length === 0) {
+                const li = document.createElement("li");
+                li.textContent = "No items identified.";
+                list.appendChild(li);
+                return;
+            }
+
+            items.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+
+        displayList("matched-skills", data.matched);
+        displayList("missing-skills", data.missing);
+        displayList("suggestions", data.suggestions);
+
+        
+        // Create the skills comparison chart
+        new Chart(document.getElementById("skills-chart"), {
+            type: "bar",
+            data: {
+                labels: ["Matched Skills", "Missing Skills"],
+                datasets: [{
+                    label: "Number of Skills",
+                    data: [data.matched.length, data.missing.length],
+                    backgroundColor: ["#16A085", "#F59E0B"],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+
+        // Create the skill distribution doughnut chart
+        new Chart(document.getElementById("distribution-chart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Matched Skills", "Missing Skills"],
+                datasets: [{
+                    data: [data.matched.length, data.missing.length],
+                    backgroundColor: ["#16A085", "#F59E0B"],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        });
+
+    } else {
+        document.getElementById("score-note").textContent =
+            "No analysis found. Please analyze your resume first.";
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+

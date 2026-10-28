@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">AI Resume Analyzer</h2>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Make Your Resume <span>Stand Out.</span></h1>
+
+                <p>
+                    Get AI-powered insights to improve your resume,
+                    match it with job or internship descriptions,
+                    and build a stronger application.
+                </p>
+
+                <a href="#analyze" class="primary-button">
+                    Analyze My Resume →
+                </a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="resume-icon">📄</div>
+                <div class="ai-icon">AI</div>
+            </div>
+        </section>
+        
+        
+<section class="upload-section" id="analyze">
+    <p id="status-message"></p>
+    
+<div id="results" class="results-section" hidden>
+    <h2>Resume Analysis Results</h2>
+
+    <div class="score-card">
+        <p>Estimated Skill Match</p>
+        <p id="match-score">0%</p>
+        <p id="score-note"></p>
+    </div>
+
+    <div class="result-card">
+        <h3>Matching Skills</h3>
+        <ul id="matched-skills"></ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Skills to Work On</h3>
+        <ul id="missing-skills"></ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Suggestions</h3>
+        <ul id="suggestions"></ul>
+    </div>
+
+    <p class="disclaimer">
+        This is a preliminary keyword-based estimate, not an
+        assessment of your overall employability.
+    </p>
+</div>
+
+    <h2>Analyze Your Resume</h2>
+    <p>Upload your resume and add the job or internship description.</p>
+
+    <div class="upload-box">
+        <label for="resume-file" class="upload-label">
+            Choose Your Resume (PDF)
+        </label>
+
+        <input
+            type="file"
+            id="resume-file"
+            accept=".pdf,application/pdf"
+        >
+
+        <p id="file-name">No file selected yet</p>
+
+        <label for="job-description" class="field-label">
+            Job / Internship Description
+        </label>
+
+        <textarea
+            id="job-description"
+            placeholder="Paste the job description here, including required skills, qualifications, and responsibilities..."
+            rows="8"
+        ></textarea>
+
+        <button type="button" id="upload-button" class="primary-button">
+            Analyze Resume
+        </button>
+
+        <p id="status-message"></p>
+    </div>
+</section>
+
+
+
+        <section class="features" id="features">
+            <h2>Key Features</h2>
+
+            <div class="feature-container">
+                <article class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Resume Analysis</h3>
+                    <p>
+                        Get insights into your resume's strengths,
+                        weaknesses and relevant skills.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Job Matching</h3>
+                    <p>
+                        Compare your resume with job or internship
+                        descriptions to identify relevant skills.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>AI Improvement</h3>
+                    <p>
+                        Receive suggestions to make your resume
+                        clearer, stronger and more effective.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <h2>How It Works</h2>
+            <p>
+                Upload your resume, enter a job description,
+                and discover ways to improve your application.
+            </p>
+        </section>
+
+    
+    </main>
+
+    <footer>
+        <p>© 2026 AI Resume Analyzer | Built by our team</p>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+
+
+</body>
+</html>
